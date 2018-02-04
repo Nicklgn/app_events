@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ename: MyString
+  estart: 2018-01-26 22:08:51
+  efinish: 2018-01-26 22:08:51
+  level: MyString
+  edesc: MyText
+  member: MyText
+  eplace: MyText
+  publ: MyString
+
+two:
+  ename: MyString
+  estart: 2018-01-26 22:08:51
+  efinish: 2018-01-26 22:08:51
+  level: MyString
+  edesc: MyText
+  member: MyText
+  eplace: MyText
+  publ: MyString

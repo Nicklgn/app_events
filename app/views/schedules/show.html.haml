@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Event:
+  = @schedule.event.ename
+%p
+  %b Sname:
+  = @schedule.sname
+%p
+  %b Sstart:
+  = @schedule.sstart
+%p
+  %b Sfinish:
+  = @schedule.sfinish
+%p
+  %b Splace:
+  = @schedule.splace
+%p
+  %b Sdesc:
+  = @schedule.sdesc
+
+= link_to 'Edit', edit_schedule_path(@schedule)
+\|
+= link_to 'Back', schedules_path

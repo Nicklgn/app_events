@@ -1,0 +1,47 @@
+%p#notice= notice
+
+%h1= t('headers.events.show')
+
+%p
+  %b= Event.human_attribute_name(:ename)
+  = @event.ename
+%p
+  %b Estart:
+  = @event.estart
+%p
+  %b Efinish:
+  = @event.efinish
+%p
+  %b Level:
+  = @event.level
+%p
+  %b Edesc:
+  = @event.edesc
+%p
+  %b Member:
+  = @event.member
+%p
+  %b Eplace:
+  = @event.eplace
+%p
+  %b Publ:
+  = @event.publ
+
+%h2= t('headers.schedules.index')
+- @event.schedules.each do |sch|
+  .row
+    .col-md-6
+      = sch.sname
+    .col-md-6
+      = sch.splace
+  .row
+    .col-md-3
+      = sch.sstart
+    .col-md-3
+      = sch.sfinish
+    .col-md-6
+      = sch.sdesc
+
+= link_to 'Edit', edit_event_path(@event)
+\|
+= link_to 'Back', events_path

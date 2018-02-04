@@ -1,0 +1,33 @@
+%h1= t('headers.events.index')
+
+%table
+  %thead
+    %tr
+      %th= Event.human_attribute_name(:ename)
+      %th Estart
+      %th Efinish
+      %th Level
+      %th Edesc
+      %th Member
+      %th Eplace
+      %th Publ
+      %th
+      %th
+
+  %tbody
+    - @events.each do |event|
+      %tr
+        %td= link_to event.ename, event
+        %td= event.estart
+        %td= event.efinish
+        %td= event.level
+        %td= event.edesc
+        %td= event.member
+        %td= event.eplace
+        %td= event.publ
+        %td= link_to 'Edit', edit_event_path(event)
+        %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Event', new_event_path

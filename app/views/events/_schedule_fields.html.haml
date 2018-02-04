@@ -1,0 +1,24 @@
+.nested-fields
+  .row
+    .col-md-8
+      .form-group
+        = f.label :sname
+        = f.text_field :sname, class: 'form-control'
+    .col-md-4
+      .form-group
+        = f.label :splace
+        = f.text_area :splace, class: 'form-control'
+  .row
+    .col-md-4
+      .form-group
+        = f.label :sstart
+        = f.datetime_select :sstart, {}, class: 'form-control'
+    .col-md-4
+      .form-group
+        = f.label :sfinish
+        = f.datetime_select :sfinish, {}, class: 'form-control'
+    .col-md-4
+      .form-group
+        = f.label :sdesc
+        = f.text_area :sdesc, class: 'form-control'
+  = link_to_remove_association "remove_sch", f

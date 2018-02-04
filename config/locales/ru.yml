@@ -1,0 +1,37 @@
+ru:
+  app:
+    name: Мероприятия МИФИ
+  helpers:
+    submit:
+      create: Сохранить
+      submit: Сохранить
+      update: Сохранить
+  headers:
+    events:
+      index: Список мероприятий
+      new: Новое мероприятие
+      edit: Редактирование мероприятия
+      show: Мероприятие
+    schedules:
+      index: График мероприятия
+  activerecord:
+    models:
+      event: Мероприятие
+      schedule: График мероприятия
+    attributes:
+      event:
+        ename: Событие
+        estart: Начало
+        efinish: Окончание
+        level: Уровень
+        edesc: Описание
+        member: Участники
+        eplace: Место
+        publ: Публикация
+      schedule:
+        event: Мероприятие
+        sname: Событие
+        sstart: Начало
+        sfinish: Окончание
+        splace: Место
+        sdesc: Информация

@@ -1,0 +1,28 @@
+= form_for @schedule do |f|
+  - if @schedule.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@schedule.errors.count, "error")} prohibited this schedule from being saved:"
+      %ul
+        - @schedule.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :event
+    = f.text_field :event
+  .field
+    = f.label :sname
+    = f.text_field :sname
+  .field
+    = f.label :sstart
+    = f.datetime_select :sstart
+  .field
+    = f.label :sfinish
+    = f.datetime_select :sfinish
+  .field
+    = f.label :splace
+    = f.text_area :splace
+  .field
+    = f.label :sdesc
+    = f.text_area :sdesc
+  .actions
+    = f.submit 'Save'

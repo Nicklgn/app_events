@@ -1,0 +1,54 @@
+= form_for @event do |f|
+  - if @event.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@event.errors.count, "error")} prohibited this event from being saved:"
+      %ul
+        - @event.errors.full_messages.each do |message|
+          %li= message
+
+  .row
+    .col-md-12
+      .form-group
+        = f.label :ename
+        = f.text_field :ename, class: 'form-control'
+  .row
+    .col-md-12
+      .form-group
+        = f.label :publ
+        = f.select :publ, ['Сайт НИЯУ МИФИ', 'МОН'], {}, class: 'form-control'
+  .row
+    .col-md-4
+      .form-group
+        = f.label :estart
+        = f.datetime_select :estart, {}, class: 'form-control'
+    .col-md-4
+      .form-group
+        = f.label :efinish
+        = f.datetime_select :efinish, {}, class: 'form-control'
+    .col-md-4
+      .form-group
+        = f.label :level
+        = f.select :level, ['Местный', 'Федеральный', 'Еще какой-нибудь'], {}, class: 'form-control'
+  .row
+    .col-md-4
+      .form-group
+        = f.label :edesc
+        = f.text_area :edesc, class: 'form-control'
+    .col-md-4
+      .form-group
+        = f.label :member
+        = f.text_area :member, class: 'form-control'
+    .col-md-4
+      .form-group
+        = f.label :eplace
+        = f.text_area :eplace, class: 'form-control'
+
+  %h2= t('headers.schedules.index')
+  #schedules
+    = f.fields_for :schedules do |sch|
+      = render('schedule_fields', f: sch)
+    .links
+      = link_to_add_association 'add_sch', f, :schedules
+
+  .actions
+    = f.submit nil, class: 'btn btn-primary'

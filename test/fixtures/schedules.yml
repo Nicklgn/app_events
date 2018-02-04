@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: one
+  sname: MyString
+  sstart: 2018-01-26 22:21:10
+  sfinish: 2018-01-26 22:21:10
+  splace: MyText
+  sdesc: MyText
+
+two:
+  event: two
+  sname: MyString
+  sstart: 2018-01-26 22:21:10
+  sfinish: 2018-01-26 22:21:10
+  splace: MyText
+  sdesc: MyText
