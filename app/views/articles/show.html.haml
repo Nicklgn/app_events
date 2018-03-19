@@ -1,0 +1,17 @@
+.row
+  %h1= t('headers.articles.show')
+  = link_to edit_article_path(@article), class: 'btn btn-warning circle' do
+    = fa_icon :pencil
+  = link_to @article, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger circle' do
+    = fa_icon :trash
+  = link_to articles_path, class: 'btn btn-info circle' do
+    = fa_icon :'arrow-circle-left'
+
+%h1= @article.caption
+%p
+  %b Publdate:
+  = @article.publdate
+
+%dl
+  - @blocks.each do |block|
+    %dd= block.btext

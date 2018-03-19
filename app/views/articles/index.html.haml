@@ -1,0 +1,22 @@
+.row
+  %h1= t('headers.articles.index')
+  = link_to new_article_path, class: 'btn btn-primary circle' do
+    = fa_icon :plus
+
+%ul.list-group
+  - @articles.each do |article|
+    %li.list-group-item
+      .row
+        .col-md-12
+          .tms
+            = article.publdate
+      .row
+        .col-md-12
+          .nz
+            - if article.nfcaption.present?
+              = link_to article.nfcaption, article
+            - else
+              = link_to article.caption, article
+      .row
+        .col-md-12
+          = article.nfdesc

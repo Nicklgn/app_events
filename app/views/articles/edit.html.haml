@@ -1,0 +1,6 @@
+.row
+  %h1= t('headers.articles.edit')
+  = link_to @article, class: 'btn btn-info circle' do
+    = fa_icon :'arrow-circle-left'
+
+= render 'form'

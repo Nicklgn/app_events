@@ -1,2 +1,7 @@
 %nav.navbar
-  %h3 Пресс-служба МИФИ
+  .row
+    %h3 Пресс-служба МИФИ
+    %h5= link_to t('headers.events.index'), events_path, class: 'nav-link'
+    %h5= link_to t('headers.articles.index'), articles_path, class: 'nav-link'
+    .inft
+      %h5 Username

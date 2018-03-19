@@ -1,33 +1,20 @@
-%h1= t('headers.events.index')
+.row
+  %h1= t('headers.events.index')
+  = link_to new_event_path, class: 'btn btn-primary circle' do
+    = fa_icon :plus
 
-%table
-  %thead
-    %tr
-      %th= Event.human_attribute_name(:ename)
-      %th Estart
-      %th Efinish
-      %th Level
-      %th Edesc
-      %th Member
-      %th Eplace
-      %th Publ
-      %th
-      %th
-
-  %tbody
-    - @events.each do |event|
-      %tr
-        %td= link_to event.ename, event
-        %td= event.estart
-        %td= event.efinish
-        %td= event.level
-        %td= event.edesc
-        %td= event.member
-        %td= event.eplace
-        %td= event.publ
-        %td= link_to 'Edit', edit_event_path(event)
-        %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Event', new_event_path
+.row
+  .col-md-6
+    = month_calendar do |date|
+      = date.day
+  .col-md-6
+    %ul.list-group
+      - @events.each do |event|
+        %li.list-group-item
+          .row
+            .col-md-12
+              = link_to event.ename, event
+          .row
+            .col-md-12
+              .tms
+                = event.estart.to_s + ' - ' + event.efinish.to_s

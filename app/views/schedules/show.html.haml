@@ -1,24 +1,27 @@
-%p#notice= notice
+.row
+  %h1= t('headers.schedules.show')
+  = link_to edit_schedule_path(@schedule), class: 'btn btn-warning circle' do
+    = fa_icon :pencil
+  = link_to @schedule, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger circle' do
+    = fa_icon :trash
+  = link_to schedules_path(:event_id => @schedule.event_id), class: 'btn btn-info circle' do
+    = fa_icon :'arrow-circle-left'
 
 %p
-  %b Event:
+  %b= Schedule.human_attribute_name(:event)
   = @schedule.event.ename
 %p
-  %b Sname:
+  %b= Schedule.human_attribute_name(:sname)
   = @schedule.sname
 %p
-  %b Sstart:
+  %b= Schedule.human_attribute_name(:sstart)
   = @schedule.sstart
 %p
-  %b Sfinish:
+  %b= Schedule.human_attribute_name(:sfinish)
   = @schedule.sfinish
 %p
-  %b Splace:
+  %b= Schedule.human_attribute_name(:splace)
   = @schedule.splace
 %p
-  %b Sdesc:
+  %b= Schedule.human_attribute_name(:sdesc)
   = @schedule.sdesc
-
-= link_to 'Edit', edit_schedule_path(@schedule)
-\|
-= link_to 'Back', schedules_path

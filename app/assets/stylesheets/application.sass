@@ -1,17 +1,87 @@
 @import bootstrap
 @import font-awesome
+@import tempusdominus-bootstrap-4.css
+@import simple_calendar
 
 #wrapper
   padding: 15px 20px 20px
 
+.simple-calendar
+  margin-top: 20px
+  .calendar-heading
+    font-size: xx-large
+    text-align: center
+    margin-bottom: 5px
+  .today
+    border-color: orange
+    border-width: 3px
+
+.list-group
+  margin-top: 20px
+  .list-group-item
+    margin-bottom: 10px
+    .tms
+      color: grey
+      font-style: italic
+    .nz
+      font-size: x-large
+
 .navbar
   background-color: #268c76
-  h1, h2, h3
+  height: 80px
+  h1, h2, h3, h4, h5
     color: white
     font-weight: bold
+    font-style: normal
+    margin-right: 20px
+    margin-bottom: 0px
+  .inft
+    margin-left: 950px
+    margin-top: 5px
+  a
+    color: white
+    &:hover, &:active, &:focus
+      color: white
+
+.eventbox
+  border-style: solid
+  border-width: 1px
+  border-color: #268c76
+  margin-top: 10px
+  .ebhead
+    background-color: #f2f2f2
+    color: #ff5050
+    border-bottom-color: #b3b3b3
+    border-bottom-style: solid
+    border-bottom-width: 1px
+    .row
+      margin-left: 5px
+      .col-md-10
+        font-size: x-large
+        margin-bottom: 20px
+        margin-top: 10px
+  .ebr
+    border-bottom-color: #b3b3b3
+    border-bottom-style: solid
+    border-bottom-width: 1px
+    .row
+      margin-left: 5px
+      margin-top: 15px
+      margin-bottom: 20px
+  .ebd
+    background-color: #f2f2f2
+    .row
+      margin-left: 5px
+      .col-md-4
+        margin-top: 10px
+        margin-bottom: 5px
 
 .label
   font-weight: bold
+
+.btn
+  margin-right: 5px
+  margin-bottom: 5px
 
 .btn-primary
   background-color: #268c76
@@ -22,5 +92,22 @@
 
 a
   color: #268c76
-  &:hover, &:active, &:focus
+  &:hover, &:active
     color: #20a879
+
+.circle
+  border-radius: 50%
+  height: 38px
+  width: 39px
+  margin-left: 20px
+  margin-top: 5px
+
+h1, h2, h3, h4
+  font-family: sans-serif
+  font-weight: lighter
+  font-style: italic
+  padding-left: 10px
+
+.simple_calendar
+  .today
+    border-color: red

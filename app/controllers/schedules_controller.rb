@@ -4,7 +4,11 @@ class SchedulesController < ApplicationController
   # GET /schedules
   # GET /schedules.json
   def index
-    @schedules = Schedule.all
+    if params[:event_id].present?
+      @schedules = Schedule.all.where('event_id = ?', params[:event_id].to_s).sort_by{ |s| s.sstart }
+    else
+      @schedules = Schedule.all.sort_by{ |s| s.sstart }
+    end
   end
 
   # GET /schedules/1
@@ -15,6 +19,9 @@ class SchedulesController < ApplicationController
   # GET /schedules/new
   def new
     @schedule = Schedule.new
+    if params[:event_id].present?
+      @schedule.event_id = params[:event_id]
+    end
   end
 
   # GET /schedules/1/edit
@@ -25,7 +32,6 @@ class SchedulesController < ApplicationController
   # POST /schedules.json
   def create
     @schedule = Schedule.new(schedule_params)
-
     respond_to do |format|
       if @schedule.save
         format.html { redirect_to @schedule, notice: 'Schedule was successfully created.' }
@@ -54,9 +60,10 @@ class SchedulesController < ApplicationController
   # DELETE /schedules/1
   # DELETE /schedules/1.json
   def destroy
+    params[:event_id] = @schedule.event_id
     @schedule.destroy
     respond_to do |format|
-      format.html { redirect_to schedules_url, notice: 'Schedule was successfully destroyed.' }
+      format.html { redirect_to schedules_url(:event_id => params[:event_id]), notice: 'Schedule was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

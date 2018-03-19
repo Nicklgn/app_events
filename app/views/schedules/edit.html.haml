@@ -1,7 +1,6 @@
-%h1 Editing schedule
+.row
+  %h1= t('headers.schedules.edit')
+  = link_to @schedule, class: 'btn btn-info circle' do
+    = fa_icon :'arrow-circle-left'
 
 = render 'form'
-
-= link_to 'Show', @schedule
-\|
-= link_to 'Back', schedules_path

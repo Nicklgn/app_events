@@ -1,5 +1,6 @@
-%h1= t('headers.events.new')
+.row
+  %h1= t('headers.events.new')
+  = link_to events_path, class: 'btn btn-info circle' do
+    = fa_icon :'arrow-circle-left'
 
 = render 'form'
-
-= link_to 'Back', events_path

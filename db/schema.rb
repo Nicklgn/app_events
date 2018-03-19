@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180126192110) do
+ActiveRecord::Schema.define(version: 20180228182149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.string "caption", null: false
+    t.string "nfcaption"
+    t.string "nfdesc"
+    t.datetime "publdate"
+    t.integer "artype", null: false
+    t.bigint "event_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artype", "event_id"], name: "index_articles_on_artype_and_event_id"
+    t.index ["event_id"], name: "index_articles_on_event_id"
+  end
+
+  create_table "blocks", force: :cascade do |t|
+    t.integer "num", null: false
+    t.text "btext"
+    t.bigint "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_blocks_on_article_id"
+  end
 
   create_table "events", force: :cascade do |t|
     t.string "ename", null: false
@@ -40,5 +62,7 @@ ActiveRecord::Schema.define(version: 20180126192110) do
     t.index ["event_id"], name: "index_schedules_on_event_id"
   end
 
+  add_foreign_key "articles", "events"
+  add_foreign_key "blocks", "articles"
   add_foreign_key "schedules", "events"
 end

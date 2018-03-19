@@ -18,8 +18,11 @@ gem 'rails-i18n'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'cocoon'
+gem 'momentjs-rails'
 gem 'bootstrap', '~> 4.0.0'
 gem 'font-awesome-rails'
+gem 'bootstrap4-datetime-picker-rails'
+gem 'simple_calendar', '~> 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -4,12 +4,15 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    @events = Event.all.sort_by{ |e| e.estart }
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    params[:event_id] = @event.id
+    @anons = Article.where('event_id = ? AND artype = 1', params[:event_id].to_s)
+    @itog = Article.where('event_id = ? AND artype = 2', params[:event_id].to_s)
   end
 
   # GET /events/new

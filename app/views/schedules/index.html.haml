@@ -1,31 +1,40 @@
-%h1 Listing schedules
+-if params[:event_id].present?
+  .row
+    %h1= t('headers.schedules.index') + ' ' + Event.find(params[:event_id]).ename
+    = link_to new_schedule_path(:event_id => params[:event_id]), class: 'btn btn-primary circle' do
+      = fa_icon :plus
+    = link_to event_url(:id => params[:event_id]), class: 'btn btn-info circle' do
+      = fa_icon :'arrow-circle-left'
+-else
+  .row
+    %h1= t('headers.schedules.index')
+    = link_to new_schedule_path, class: 'btn btn-primary circle' do
+      = fa_icon :plus
 
-%table
+%table.table.table-hover
   %thead
     %tr
-      %th Event
-      %th Sname
-      %th Sstart
-      %th Sfinish
-      %th Splace
-      %th Sdesc
-      %th
+      -if !params[:event_id].present?
+        %th= Schedule.human_attribute_name(:event)
+      %th= Schedule.human_attribute_name(:sname)
+      %th= Schedule.human_attribute_name(:stime)
       %th
       %th
 
   %tbody
     - @schedules.each do |schedule|
       %tr
-        %td= schedule.event.ename
+        -if !params[:event_id].present?
+          %td= schedule.event.ename
         %td= schedule.sname
-        %td= schedule.sstart
-        %td= schedule.sfinish
-        %td= schedule.splace
-        %td= schedule.sdesc
-        %td= link_to 'Show', schedule
-        %td= link_to 'Edit', edit_schedule_path(schedule)
-        %td= link_to 'Destroy', schedule, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Schedule', new_schedule_path
+        - if schedule.sfinish.present?
+          %td= schedule.sstart.to_s + ' - ' + schedule.sfinish.to_s
+        - else
+          %td= schedule.sstart
+        %td
+          = link_to schedule, class: 'btn btn-info' do
+            = fa_icon :eye
+          = link_to edit_schedule_path(schedule), class: 'btn btn-warning' do
+            = fa_icon :pencil
+          = link_to schedule, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger' do
+            = fa_icon :trash

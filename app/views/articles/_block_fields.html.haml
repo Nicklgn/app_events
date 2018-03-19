@@ -1,0 +1,14 @@
+.nested-fields
+  .row
+    %h4= 'Блок номер'
+  .row
+    .col-md-2
+      .form-group
+        = f.label :num
+        = f.number_field :num, class: 'form-control'
+  .row
+    .col-md-12
+      .form-group
+        = f.label :btext
+        = f.text_area :btext, class: 'form-control'
+  = link_to_remove_association 'Удалить', f, class: 'btn btn-danger'

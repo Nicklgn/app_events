@@ -1,5 +1,6 @@
-%h1 New schedule
+.row
+  %h1= t('headers.schedules.new')
+  = link_to schedules_path(:event_id => params[:event_id]), class: 'btn btn-info circle' do
+    = fa_icon :'arrow-circle-left'
 
 = render 'form'
-
-= link_to 'Back', schedules_path

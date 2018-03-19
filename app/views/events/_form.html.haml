@@ -20,11 +20,19 @@
     .col-md-4
       .form-group
         = f.label :estart
-        = f.datetime_select :estart, {}, class: 'form-control'
+        #datetimepicker1.input-group.date{"data-target-input" => "nearest"}
+          = f.text_field :estart, {class: 'form-control', "data-target" => "#datetimepicker1"}
+          .input-group-append{"data-target" => "#datetimepicker1", "data-toggle" => "datetimepicker"}
+            .input-group-text
+              %i.fa.fa-calendar
     .col-md-4
       .form-group
         = f.label :efinish
-        = f.datetime_select :efinish, {}, class: 'form-control'
+        #datetimepicker2.input-group.date{"data-target-input" => "nearest"}
+          = f.text_field :efinish, {class: 'form-control', "data-target" => "#datetimepicker2"}
+          .input-group-append{"data-target" => "#datetimepicker2", "data-toggle" => "datetimepicker"}
+            .input-group-text
+              %i.fa.fa-calendar
     .col-md-4
       .form-group
         = f.label :level
@@ -42,13 +50,5 @@
       .form-group
         = f.label :eplace
         = f.text_area :eplace, class: 'form-control'
-
-  %h2= t('headers.schedules.index')
-  #schedules
-    = f.fields_for :schedules do |sch|
-      = render('schedule_fields', f: sch)
-    .links
-      = link_to_add_association 'add_sch', f, :schedules
-
   .actions
     = f.submit nil, class: 'btn btn-primary'

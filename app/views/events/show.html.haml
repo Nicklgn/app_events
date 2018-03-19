@@ -1,47 +1,53 @@
-%p#notice= notice
+.row
+  %h1= t('headers.events.show')
+  = link_to edit_event_path(@event), class: 'btn btn-warning circle' do
+    = fa_icon :pencil
+  = link_to @event, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-danger circle' do
+    = fa_icon :trash
+  = link_to events_path, class: 'btn btn-info circle' do
+    = fa_icon :'arrow-circle-left'
 
-%h1= t('headers.events.show')
+.eventbox
+  .ebhead
+    .row
+      .col-md-10
+        = @event.ename
+  .ebr
+    .row
+      .col-md-2
+        %b= Event.human_attribute_name(:edesc)
+      .col-md-10
+        = @event.edesc
+  .ebr
+    .row
+      .col-md-2
+        %b= Event.human_attribute_name(:member)
+      .col-md-10
+        = @event.member
+  .ebr
+    .row
+      .col-md-2
+        %b= Event.human_attribute_name(:eplace)
+      .col-md-10
+        = @event.eplace
+  .ebd
+    .row
+      .col-md-4
+        = link_to schedules_path(:event_id => @event.id), class: 'btn btn-primary' do
+          = t('buttons.schedule')
 
-%p
-  %b= Event.human_attribute_name(:ename)
-  = @event.ename
-%p
-  %b Estart:
-  = @event.estart
-%p
-  %b Efinish:
-  = @event.efinish
-%p
-  %b Level:
-  = @event.level
-%p
-  %b Edesc:
-  = @event.edesc
-%p
-  %b Member:
-  = @event.member
-%p
-  %b Eplace:
-  = @event.eplace
-%p
-  %b Publ:
-  = @event.publ
+        - if @anons.present?
+          - @anons.each do |anons|
+            = link_to article_url(:id => anons.id), class: 'btn btn-primary' do
+              = t('buttons.anons')
+        - else
+          = link_to new_article_path(:event_id => @event.id, :artype => '1'), class: 'btn btn-primary' do
+            = t('buttons.add_anons')
 
-%h2= t('headers.schedules.index')
-- @event.schedules.each do |sch|
-  .row
-    .col-md-6
-      = sch.sname
-    .col-md-6
-      = sch.splace
-  .row
-    .col-md-3
-      = sch.sstart
-    .col-md-3
-      = sch.sfinish
-    .col-md-6
-      = sch.sdesc
-
-= link_to 'Edit', edit_event_path(@event)
-\|
-= link_to 'Back', events_path
+        - if @itog.present?
+          - @itog.each do |itog|
+            = link_to article_url(:id => itog.id), class: 'btn btn-primary' do
+              = t('buttons.itog')
+        - else
+          = link_to new_article_path(:event_id => @event.id, :artype => '2'), class: 'btn btn-primary' do
+            = t('buttons.add_itog')
