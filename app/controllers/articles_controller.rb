@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.all.order('publdate DESC')
   end
 
   # GET /articles/1
@@ -78,6 +78,6 @@ class ArticlesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
       params.require(:article).permit(:caption, :nfcaption, :nfdesc, :publdate, :artype, :event_id,
-      {blocks_attributes: [:id, :_destroy, :num, :btext]})
+      {blocks_attributes: [:id, :_destroy, :num, :btext, {pictures_attributes: [:id, :_destroy, :sign, :image]}]})
     end
 end

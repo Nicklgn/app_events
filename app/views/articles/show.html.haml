@@ -6,12 +6,25 @@
     = fa_icon :trash
   = link_to articles_path, class: 'btn btn-info circle' do
     = fa_icon :'arrow-circle-left'
-
-%h1= @article.caption
-%p
-  %b Publdate:
-  = @article.publdate
-
+.row
+  - if (@article.artype == 1)
+    .anons
+      .anonstxt
+        Анонс
+  - if (@article.artype == 2)
+    .itogi
+      .itogitxt
+        Итоги
+  = link_to @article.event.ename, event_url(:id => @article.event_id)
+.row
+  .col-md-2
+    .tms
+      = @article.publdate
+.row
+  %h1= @article.caption
 %dl
   - @blocks.each do |block|
-    %dd= block.btext
+    %dd
+      %p= block.btext
+      - block.pictures.each do |pic|
+        = image_tag(pic.image.url(:thumb)) if pic.image.exists?

@@ -1,7 +1,12 @@
 %nav.navbar
   .row
-    %h3 Пресс-служба МИФИ
+    .mleft
+      = image_tag 'mephi_logo.png', size: '80x40'
+    %h3 Пресс-служба
     %h5= link_to t('headers.events.index'), events_path, class: 'nav-link'
     %h5= link_to t('headers.articles.index'), articles_path, class: 'nav-link'
-    .inft
-      %h5 Username
+    %h5= link_to t('headers.users.index'), users_path, class: 'nav-link'
+    - if !user_signed_in?
+      %h5= link_to 'Вход', new_user_session_path, class: 'nav-link'
+    - else
+      %h5= link_to 'Выход', destroy_user_session_path, :method => :delete, class: 'nav-link'

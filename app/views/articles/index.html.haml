@@ -7,7 +7,15 @@
   - @articles.each do |article|
     %li.list-group-item
       .row
-        .col-md-12
+        - if (article.artype == 1)
+          .anons
+            .anonstxt
+              Анонс
+        - if (article.artype == 2)
+          .itogi
+            .itogitxt
+              Итоги
+        .col-md-2
           .tms
             = article.publdate
       .row

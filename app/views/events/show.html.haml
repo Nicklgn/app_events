@@ -12,6 +12,15 @@
     .row
       .col-md-10
         = @event.ename
+      .col-md-2
+        .row
+          .tms
+            = @event.estart.to_s + ' - ' + @event.efinish.to_s
+        .row
+          = Event.human_attribute_name(:level)
+          .lvs
+            .txlvs
+              = @event.level
   .ebr
     .row
       .col-md-2
@@ -32,7 +41,7 @@
         = @event.eplace
   .ebd
     .row
-      .col-md-4
+      .col-md-10
         = link_to schedules_path(:event_id => @event.id), class: 'btn btn-primary' do
           = t('buttons.schedule')
 
@@ -51,3 +60,9 @@
         - else
           = link_to new_article_path(:event_id => @event.id, :artype => '2'), class: 'btn btn-primary' do
             = t('buttons.add_itog')
+      .col-md-2
+        .row
+          = Event.human_attribute_name(:publ)
+          .pbs
+            .txpbs
+              = @event.publ

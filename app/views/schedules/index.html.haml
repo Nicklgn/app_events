@@ -11,27 +11,18 @@
     = link_to new_schedule_path, class: 'btn btn-primary circle' do
       = fa_icon :plus
 
-%table.table.table-hover
-  %thead
-    %tr
-      -if !params[:event_id].present?
-        %th= Schedule.human_attribute_name(:event)
-      %th= Schedule.human_attribute_name(:sname)
-      %th= Schedule.human_attribute_name(:stime)
-      %th
-      %th
-
-  %tbody
-    - @schedules.each do |schedule|
-      %tr
-        -if !params[:event_id].present?
-          %td= schedule.event.ename
-        %td= schedule.sname
-        - if schedule.sfinish.present?
-          %td= schedule.sstart.to_s + ' - ' + schedule.sfinish.to_s
-        - else
-          %td= schedule.sstart
-        %td
+%ul.list-group
+  - @schedules.each do |schedule|
+    %li.list-group-item
+      .row
+        .col-md-2
+          - if schedule.sfinish.present?
+            = schedule.sstart.to_s + ' - ' + schedule.sfinish.to_s
+          - else
+            = schedule.sstart
+        .col-md-8
+          = schedule.sname
+        .col-md-2
           = link_to schedule, class: 'btn btn-info' do
             = fa_icon :eye
           = link_to edit_schedule_path(schedule), class: 'btn btn-warning' do

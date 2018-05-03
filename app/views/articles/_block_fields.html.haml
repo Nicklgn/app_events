@@ -1,7 +1,7 @@
 .nested-fields
   .row
-    %h4= 'Блок номер'
-  .row
+    %h4= 'Блок'
+  -#.row
     .col-md-2
       .form-group
         = f.label :num
@@ -11,4 +11,10 @@
       .form-group
         = f.label :btext
         = f.text_area :btext, class: 'form-control'
-  = link_to_remove_association 'Удалить', f, class: 'btn btn-danger'
+  = f.label 'Изображения'
+  #pictures
+    = f.fields_for :pictures do |pic|
+      = render('picture_fields', f: pic)
+    .links
+      = link_to_add_association 'Добавить изображение', f, :pictures, class: 'btn btn-info'
+  = link_to_remove_association 'Удалить блок', f, class: 'btn btn-danger'
